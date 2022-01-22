@@ -4,6 +4,7 @@ import styles from './layout.module.scss'
 import utilStyles from '../../styles/utils.module.scss'
 import Link from 'next/link'
 import React from 'react'
+import Navbar from './navbar/navbar'
 
 const name = 'Your Name'
 export const siteTitle = 'Next.js Sample Website'
@@ -34,6 +35,9 @@ export default function Layout({
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+
+      <Navbar></Navbar>
+
       <header className={styles.header}>
         {home ? (
           <>

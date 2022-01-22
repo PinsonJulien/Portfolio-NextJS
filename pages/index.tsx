@@ -13,7 +13,7 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
 
-      {{ /* test tailwind */}}
+  
       <h1 className="text-3xl font-bold underline">lol</h1>
 
       <section className={utilStyles.headingMd}>

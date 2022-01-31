@@ -11,13 +11,13 @@ export default function Navbar({
 }) {
 
   // Ouverture / fermeture du menu sur mobile.
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
 
   // Liens:
   const links: NavLink[] = [
     {
       path: "/404",
-      name: "patate",
+      name: "patatezzzzzzzzzzzzzzzzz",
       active: true
     },
     {

@@ -1,0 +1,68 @@
+$spaceTextChar: 0.5em;
+$spaceAnimation: 0.5em;
+$duration: 0.5s;
+$leftChar: '{';
+$rightChar: '}';
+
+// gauche
+.active:before,
+.animated:before {
+  content: $leftChar;
+}
+
+// droite
+.active:after,
+.animated:after {
+  content: $rightChar;
+}
+
+// element même : relatif
+.animated, .active {
+  position: relative;
+}
+
+// Caractère ajouté, absolute pour pouvoir les déplacer.
+.active:before,
+.active:after,
+.animated:before,
+.animated:after {
+  position: absolute;
+}
+
+// Quand actif, pas d'animation sur hover.
+.active:before {
+  left: (-$spaceTextChar - $spaceAnimation);
+}
+
+.active:after {
+  right: (-$spaceTextChar - $spaceAnimation);
+}
+
+// Affiche une animation quand on hover sur un lien.
+
+.animated:before, 
+.animated:after {
+  transition: all $duration;
+  opacity: 0;
+}
+
+.animated:before {
+  left: -$spaceTextChar;
+}
+
+.animated:after {
+  right: -$spaceTextChar;
+}
+
+.animated:hover:before,
+.animated:hover:after {
+  opacity: 1;
+}
+
+.animated:hover:before {
+  transform: translateX(-$spaceAnimation);
+}
+
+.animated:hover:after {
+  transform: translateX($spaceAnimation);
+}

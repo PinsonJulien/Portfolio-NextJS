@@ -35,10 +35,11 @@ export function Menu (
                   className = {`
                     text-teal-200 
                     hover:text-white
+                    ${styles.hoverAnimation}
                     ${
                       data.active 
-                      ? "text-purple-500" 
-                      : ""
+                      ? styles.active 
+                      : styles.animated
                     }
                   `}
                 >

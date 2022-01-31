@@ -3,8 +3,8 @@ import styles from './burger.module.scss';
 export function BurgerButton(
   {get, set, className, childClassName} : 
   {
-    get: any;
-    set: any;
+    get: boolean;
+    set: (get: boolean) => void;
     className?: string;
     childClassName?: string;
   }) {

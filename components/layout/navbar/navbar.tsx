@@ -53,6 +53,8 @@ export default function Navbar({
           w-full 
           block 
           flex-grow
+          mx-5
+          lg:mx-0
           lg:flex
           lg:items-center 
           lg:w-auto

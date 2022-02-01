@@ -11,8 +11,14 @@ export function Menu (
   return (
     <ul 
       className={`
-        text-sm 
-        lg:mx-auto 
+        text-base
+        lg:mx-auto
+        flex
+        flex-col
+        gap-y-1
+        lg:flex-row
+        lg:gap-y-0
+        lg:gap-x-5
         ${className}
       `}
     > 
@@ -26,8 +32,9 @@ export function Menu (
                 mt-4 
                 lg:inline-block 
                 lg:mt-0 
-                mr-4`
-              }>
+                mr-4
+              `}
+            >
               <Link
                 href={data.path}
               >
@@ -35,7 +42,7 @@ export function Menu (
                   className = {`
                     text-teal-200 
                     hover:text-white
-                    ${styles.hoverAnimation}
+                    hover:no-underline
                     ${
                       data.active 
                       ? styles.active 

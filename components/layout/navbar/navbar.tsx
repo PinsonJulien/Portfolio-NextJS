@@ -31,10 +31,11 @@ export default function Navbar({
     <nav 
       className={`
         w-screen
+        ${!open ? "sticky" : "fixed" }
+        lg:sticky
+        top-0
         ${!open ? "h-auto" : "h-screen"}
         lg:h-auto
-        fixed
-        top-0
         p-6
         bg-teal-500
         flex

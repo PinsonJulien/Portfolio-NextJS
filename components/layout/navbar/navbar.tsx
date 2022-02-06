@@ -28,44 +28,90 @@ export default function Navbar({
 
   return (
     <nav 
-      className={`${styles.container} flex items-center justify-between flex-wrap bg-teal-500 p-6`}
+      className={`
+        w-screen
+        ${!open ? "h-auto" : "h-screen"}
+        lg:h-auto
+        fixed
+        top-0
+        p-6
+        bg-teal-500
+        flex
+        flex-col
+        lg:flex-row
+        lg:items-center
+      `}
     >
-      <div 
-        className="flex items-center flex-shrink-0 text-white mr-6"
+      <div
+        className={`
+          flex
+          items-center
+        `}
       >
-        <p>lol </p>
-        <p>lol</p>
-      </div>
-      <div 
-        className="block lg:hidden"
-      >
-        <BurgerButton 
-          get={open}
-          set={setOpen}
-          className=""
-          childClassName=""
-        />
+        <div>
+          logo
+        </div>
+        <div
+          className={`
+            ml-auto
+            lg:ml-0
+            lg:hidden
+          `}
+        >
+          <BurgerButton 
+            get={open}
+            set={setOpen}
+            className=""
+            childClassName=""
+          />
+        </div>
       </div>
 
-      <div 
-        id="nav-content" 
+      <div
         className={`
-          w-full 
-          block 
-          flex-grow
-          mx-5
-          lg:mx-0
-          lg:flex
-          lg:items-center 
-          lg:w-auto
+          grow
+          flex 
+          flex-col
+          lg:flex-row
+          lg:items-center
+          mx-auto
+          p-2
+          lg:p-0
           ${!open ? "hidden" : ""}
         `}
       >
         <Menu
           links={links}
+          className={`
+          `}
         />
-        <div>
-          <a href="#" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
+        <div
+          className={`
+            mt-auto
+            lg:mt-0
+            mx-auto
+            lg:mx-0
+          `}
+        >
+          <a 
+            href="#" 
+            className={`
+              inline-block 
+              text-sm 
+              px-4 
+              py-2 
+              leading-none 
+              border 
+              rounded 
+              text-white 
+              border-white 
+              hover:border-transparent 
+              hover:text-teal-500 
+              hover:bg-white 
+            `}
+          >
+            Download
+          </a>
         </div>
       </div>
     </nav>

@@ -1,0 +1,1 @@
+export type ButtonSizes = "XS" | "SM" | "MD" | "LG" | "XL";

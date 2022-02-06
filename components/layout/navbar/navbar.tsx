@@ -1,5 +1,6 @@
 import React from 'react';
-import { BurgerButton } from '../../buttons/burger/burger';
+import { Button } from '../../button/button';
+import { BurgerIcon } from '../../icons/burger/burger-icon';
 import { Menu } from './menu/menu';
 import { NavLink } from './menu/navLink';
 import styles from './navbar.module.scss';
@@ -58,26 +59,36 @@ export default function Navbar({
             lg:hidden
           `}
         >
-          <BurgerButton 
-            get={open}
-            set={setOpen}
-            className=""
-            childClassName=""
-          />
+          <Button
+            onClick={() => setOpen(!open)}
+            size={"MD"}
+            className={`
+            border-teal-400 
+            hover:border-white
+            `}
+          >
+            <BurgerIcon
+              get={open}
+              lineClassName={`
+                bg-teal-200 
+                group-hover:bg-white
+              `}
+            />
+          </Button>
         </div>
       </div>
 
       <div
         className={`
+          ${!open ? "hidden" : "flex"}
+          lg:flex
           grow
-          flex 
           flex-col
           lg:flex-row
           lg:items-center
           mx-auto
           p-2
           lg:p-0
-          ${!open ? "hidden" : ""}
         `}
       >
         <Menu

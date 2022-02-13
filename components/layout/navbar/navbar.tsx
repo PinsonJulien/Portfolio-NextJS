@@ -17,9 +17,8 @@ export default function Navbar({
   // Liens:
   const links: NavLink[] = [
     {
-      path: "/404",
-      name: "patatezzzzzzzzzzzzzzzzz",
-      active: true
+      path: "/posts",
+      name: "patatezzzzzzzzzzzzzzzzz"
     },
     {
       path: "/patate",
@@ -30,11 +29,11 @@ export default function Navbar({
   return (
     <nav 
       className={`
-        w-screen
+        w-full
         ${!open ? "sticky" : "fixed" }
         lg:sticky
         top-0
-        ${!open ? "h-auto" : "h-screen"}
+        ${!open ? "h-auto" : "h-full"}
         lg:h-auto
         p-6
         bg-teal-500
@@ -42,6 +41,7 @@ export default function Navbar({
         flex-col
         lg:flex-row
         lg:items-center
+        z-50
       `}
     >
       <div

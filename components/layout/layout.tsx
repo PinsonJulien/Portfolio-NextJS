@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from './layout.module.scss'
 import utilStyles from '../../styles/utils.module.scss'
 import Link from 'next/link'
@@ -19,7 +18,14 @@ export default function Layout({
   home?: boolean;
 }) {
   return (
-    <div className={styles.container} style={{backgroundColor: color}}>
+    <div 
+      className={`
+        w-screen
+        h-screen
+        bg-slate-700
+        text-white
+      `}
+    >
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -38,7 +44,13 @@ export default function Layout({
 
       <Navbar />
 
-      <main>
+      <main
+        className={`
+          container
+          px-5
+          mx-auto
+        `}
+      >
         {children}
       </main>
 

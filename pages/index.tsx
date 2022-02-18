@@ -3,7 +3,7 @@ import Layout, { siteTitle } from '../components/layout/layout';
 import utilStyles from '../styles/utils.module.scss';
 import { getSortedPostsData } from '../lib/posts';
 import Link from 'next/link';
-import Date from '../components/date/date';
+import Time from '../components/time/time';
 import { GetStaticProps } from 'next';
 
 export default function Home({ allPostsData }) {
@@ -34,7 +34,7 @@ export default function Home({ allPostsData }) {
               </Link>
               <br />
               <small className={utilStyles.lightText}>
-                <Date dateString={date} />
+                <Time dateString={date} />
               </small>
             </li>
           ))}

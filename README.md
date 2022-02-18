@@ -1,2 +1,2 @@
 start dev:
-npm start dev
+npm run dev

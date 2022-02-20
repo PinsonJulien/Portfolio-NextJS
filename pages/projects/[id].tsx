@@ -1,59 +1,74 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticPathsResult, GetStaticProps, GetStaticPropsResult } from 'next';
 import Head from 'next/head';
 import Date from '../../components/time/time';
 import Layout from '../../components/layout/layout';
-import { getAllPostIds, getPostData } from '../../lib/posts';
 import utilStyles from '../../styles/utils.module.scss'
-import { getAllIds, getData } from '../../lib/markdown/markdown';
+import { MarkdownArray, MarkdownObject } from '../../lib/markdown/markdown';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import { generatePaths } from '../../lib/paths/paths';
+import { ProjectsMetadata } from '../projects';
 
-export default function Post({ 
-  postData 
-}: {
-  postData: {
-    title: string;
-    date: string;
-    contentHtml: string;
-  }
-}) {
+export default function Project({ 
+  data
+} : {
+  data: MarkdownObject<ProjectsMetadata>
+}): JSX.Element {
   return (
     <Layout>
       <Head>
-        <title>{postData.title}</title>
+        <title>{data.metadata.title}</title>
       </Head>
 
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <h1 className={utilStyles.headingXl}>{data.metadata.title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
+          <Date dateString={data.metadata.date} />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+
+        <ReactMarkdown
+          children = {data.content}
+          components= {{
+            h1: ({node, ...props}) => (
+              <h1 className='text-green-500' {...props}/>
+            )
+          }}
+        />
       </article>
     </Layout>
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult> => {
   // Return a list of possible value for id
-  const paths = getAllIds({ directory: "projects"});
+  const markdowns = new MarkdownArray("projects");
+  const paths = generatePaths(markdowns.getArrayOfId());
+
   return {
     paths,
     fallback: false
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ 
+  params: {
+    id
+  } 
+} : {
+  params: {
+    id: MarkdownObject<ProjectsMetadata>["id"]
+  } 
+}) : Promise<GetStaticPropsResult<{ 
+  data: MarkdownObject<ProjectsMetadata> 
+}>> => {
   // Fetch necessary data for the blog post using params.id
-  const postData = await getData<{
-    title: string,
-    date: string,
-    tags: string[]
-  }> ({
-    directory: "projects", 
-    id: (params.id as string) 
-  })
+  
+  const data = new MarkdownArray<ProjectsMetadata>("projects")
+  .getById(id as MarkdownObject<ProjectsMetadata>["id"])
+  .getProperties();
+
   return {
     props: {
-      postData
+      data
     }
   }
 } 

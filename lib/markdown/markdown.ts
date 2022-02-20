@@ -1,121 +1,93 @@
 import fs from 'fs';
 import path from 'path';
 import matter, { GrayMatterFile } from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
+import { trimExtension } from '../trim/trim';
 
-const wholePath = (...dirs: string[]) : string => path.join(process.cwd(), ...dirs);
+// Build folder path from root.
+const pathFromRoot = (...dirs: string[]) : string => path.join(process.cwd(), ...dirs);
 
-// Get all file paths from specified directory.
-function getAllMarkdownFiles ({ 
-  directory
-}: {
-  directory: string;
-}): string[] {
-  // Get all files
-  const dirPath = wholePath(directory); 
-  const files = fs.readdirSync(dirPath);
-  
-  // keep all files that end with .md extension
-  return files.filter( (file) => {
-    return path.extname(file) === '.md';
-  });
-}
+export class MarkdownArray<Metadata> {
+  private array: Markdown<Metadata>[];
 
-// Extract markdown file content
-function parseMarkdown (filePath: string): GrayMatterFile<string> {
-  // Read markdown file as string
-  const fileContent = fs.readFileSync(filePath, 'utf8');
+  constructor(folder: string) {
+    // fetch all markdown files in specified folder.
+    const files = this.fetchMarkdowns(folder);
+    
+    // Create Markdown objects for each files found.
+    this.array = files.map( (file) => {
+      return new Markdown<Metadata>(folder, file);
+    })
+  }
 
-  // Use gray-matter to parse the post metadata section
-  return matter(fileContent);
-}
+  public getArray(): Markdown<Metadata>[] { return this.array; }
 
-// Remove specified file extension
-function trimFileExtension (file: string): string {
-  return path.parse(file).name;
-}
-
-// Get of metadata from markdown files in specified directory
-export function getAllMetadata<T> ({
-  directory,
-  sortBy = null,
-} : {
-  directory: string;
-  sortBy?: keyof T
-}): (T & {id: string})[] {
-  const markdowns = getAllMarkdownFiles({directory});
-
-  // Read each md files: set their name as ID and get their metadata. 
-  const datas = markdowns.map( markdown => {
-    // Remove ".md" from file name to get id
-    const id = trimFileExtension(markdown);
-
-    // Parse markdown file
-    const markdownData = parseMarkdown(wholePath(directory, markdown));
-
-    // Combine the data with the id
-    return {
-      id,
-      ...(markdownData.data as T)
-    };
-  });
-
-  if (sortBy) {
-    datas.sort( (a, b) => {
-      return (a[sortBy] < b[sortBy]) 
-        ? 1
-        : (a[sortBy] > b[sortBy])
-          ? -1
-          : 0
-      ;
+  public getArrayOfObjects(): MarkdownObject<Metadata>[]{
+    return this.getArray().map((item) => {
+      return item.getProperties();
     });
   }
 
-  return datas;
-}
-
-// Return array of all id's in specified directory
-export function getAllIds({ 
-  directory 
-} : {
-  directory: string;
-}): {
-  params: {
-    id: string
+  public getArrayOfId(): Markdown<Metadata>["id"][] {
+    return this.getArray().map((item) => {
+      return item.getId();
+    });
   }
-}[] {
-  const markdowns = getAllMarkdownFiles({directory});
 
-  return markdowns.map( (markdown) => {
-    return {
-      params: {
-        id: trimFileExtension(markdown),
-      }
-    };
-  });
+  public getById (id: Markdown<Metadata>["id"]): Markdown<Metadata> {
+    return this.getArray().find(item => item.getId() == id);
+  }
+
+  private fetchMarkdowns(folder: string): string[] {
+    // fetch all files
+    const files = fs.readdirSync(pathFromRoot(folder));
+
+    // Only keep markdown files.
+    return files.filter( (file) => {
+      return path.extname(file) === '.md';
+    });
+  }
 }
 
-// Get data by ID from a directory.
-export async function getData <T>({ 
-  directory,
-  id,
-}: {
-  directory: string;
-  id: string;
-}) : Promise<(T & { id: string; content: string; })> {
-  // Parse markdown file
-  const markdownData = parseMarkdown(wholePath(directory, `${id}.md`)); 
+// Type that holds the markdown object for external usage.
+// Used like so because there's no way to use the private properties as object values..
+export type MarkdownObject<Metadata> = ReturnType<Markdown<Metadata>["getProperties"]>;
 
-  // Use remark to convert markdown into HTML string
-  const content = await remark()
-    .use(html)
-    .process(markdownData.content)
-    .toString();
+export class Markdown<Metadata> {
+  private id: string;
+  private metadata: Metadata;
+  private content: string;
 
-  return {
-    id,
-    ...(markdownData.data as T),
-    content
-  };
+  constructor (folder: string, file: string) {
+    const data = this.parseFile(pathFromRoot(folder, file));
+
+    // remove the .md extension from filename
+    this.setId(trimExtension(file));
+    this.setMetadata(data.data as Metadata);
+    this.setContent(data.content);
+  }
+
+  private setId (id: string): void { this.id = id; }
+  public getId (): string { return this.id; }
+
+  private setMetadata (metadata: Metadata): void { this.metadata = metadata; }
+  public getMetadata (): Metadata { return this.metadata; }
+
+  private setContent (content: string): void { this.content = content; }
+  public getContent (): string { return this.content; }
+
+  public getProperties() {
+    return {
+      id: this.getId(),
+      metadata: this.getMetadata(),
+      content: this.getContent()
+    }
+  }
+
+  private parseFile (path: string) : GrayMatterFile<string> {
+    // Read markdown file as string
+    const fileContent = fs.readFileSync(path, 'utf8');
+
+    // Use gray-matter to parse the post metadata section
+    return matter(fileContent);
+  }
 }

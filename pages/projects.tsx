@@ -1,15 +1,15 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import Layout, { siteTitle } from '../components/layout/layout';
-import { getSortedPostsData } from '../lib/posts';
-import Link from 'next/link';
-import { GetStaticProps } from 'next';
-import { Tag } from '../components/tag/tag';
+import { GetStaticProps, GetStaticPropsResult } from 'next';
 import { ProjectCard } from '../components/project-card/project-card';
-import { text } from 'stream/consumers';
-import { getAllMetadata } from '../lib/markdown/markdown';
+import { MarkdownArray, MarkdownObject } from '../lib/markdown/markdown';
 
-export default function Home({ allProjectsMetadata }) {
+export default function Projects({ 
+  data 
+} 
+: { 
+  data : MarkdownObject<ProjectsMetadata>[]
+}): JSX.Element {
   return (
     <Layout home>
       <Head>
@@ -27,13 +27,13 @@ export default function Home({ allProjectsMetadata }) {
         `}
       >
         {
-          allProjectsMetadata.map((data, key) => (
+          data.map((val, key) => (
             <ProjectCard
               key={key}
-              url={`/projects/${data.id}`}
-              title={data.title}
-              imgPath={`/public/images/projects/${data.id}/${"thumbnail"}.jpg`}
-              tags={data.tags}
+              url={`/projects/${val.id}`}
+              title={val.metadata.title}
+              imgPath={`/public/images/projects/${val.id}/${"thumbnail"}.jpg`}
+              tags={val.metadata.tags}
             /> 
           ))
         }
@@ -42,24 +42,32 @@ export default function Home({ allProjectsMetadata }) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  // Get external data from the file system, API, DB, etc.
-  //const allPostsData = getSortedPostsData()
-
-  const allProjectsMetadata = getAllMetadata<{
-    title: string,
-    date: string,
-    tags: string[]
-  }>({
-    directory: "projects",
-    sortBy: "date"
+export const getStaticProps: GetStaticProps = async () : Promise<GetStaticPropsResult<
+  { 
+    data: MarkdownObject<ProjectsMetadata>[]
+  }
+>> => {
+  // Get data sorted by most recent date.
+  const data = new MarkdownArray<ProjectsMetadata>("projects")
+  .getArrayOfObjects().sort( (a, b) => {
+    return (a.metadata.date < b.metadata.date) 
+    ? 1
+    : (a.metadata.date > b.metadata.date)
+      ? -1
+      : 0
+    ;
   });
 
-  // The value of the `props` key will be
-  //  passed to the `Home` component
+  // The value of the `props` key will be passed to the `Home` component
   return {
     props: {
-      allProjectsMetadata
+      data
     }
   }
+}
+
+export type ProjectsMetadata = {
+  title: string,
+  date: string,
+  tags: string[]
 }

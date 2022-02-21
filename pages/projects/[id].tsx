@@ -7,6 +7,7 @@ import { MarkdownArray, MarkdownObject } from '../../lib/markdown/markdown';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { generatePaths } from '../../lib/paths/paths';
 import { ProjectsMetadata } from '../projects';
+import Image from 'next/image';
 
 export default function Project({ 
   data
@@ -50,6 +51,25 @@ export default function Project({
                   py-5
                 `}
               />
+            ),
+            img: ({...props}) => 
+            (
+              <div
+                className={`
+                  w-1/2
+                  mx-auto
+                `}
+              >
+                <Image
+                  src={`/..${props.src}`}
+                  layout="responsive"
+                  width="100%"
+                  height="100%" 
+                  className={`
+                  `}
+                />
+                {props.alt}
+              </div>
             )
           }}
         />

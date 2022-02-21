@@ -20,8 +20,8 @@ export default function Layout({
   return (
     <div 
       className={`
-        w-screen
-        h-screen
+        max-w-full
+        max-h-full
         bg-slate-700
         text-white
       `}

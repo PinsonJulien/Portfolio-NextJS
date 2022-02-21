@@ -27,9 +27,29 @@ export default function Project({
 
         <ReactMarkdown
           children = {data.content}
+          className={`
+          `}
           components= {{
             h1: ({node, ...props}) => (
-              <h1 className='text-green-500' {...props}/>
+              <h1 
+                {...props} 
+                className={`
+                  text-green-500
+                  text-2xl
+                  my-3
+                  before:content-['>']
+                  before:mr-2
+                  before:inline-block
+                `} 
+              />
+            ),
+            p: ({...props}) => (
+              <p 
+                {...props} 
+                className={`
+                  py-5
+                `}
+              />
             )
           }}
         />

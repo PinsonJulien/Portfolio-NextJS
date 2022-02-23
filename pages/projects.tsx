@@ -3,12 +3,10 @@ import Layout, { siteTitle } from '../components/layout/layout';
 import { GetStaticProps, GetStaticPropsResult } from 'next';
 import { ProjectCard } from '../components/project-card/project-card';
 import { MarkdownArray, MarkdownObject } from '../lib/markdown/markdown';
-import { MDXProvider } from '@mdx-js/react';
 
 export default function Projects({ 
   data 
-} 
-: { 
+} : { 
   data : MarkdownObject<ProjectsMetadata>[]
 }): JSX.Element {
   return (
@@ -47,7 +45,7 @@ export const getStaticProps: GetStaticProps = async () : Promise<GetStaticPropsR
   data: MarkdownObject<ProjectsMetadata>[]
 }>> => {
   // Get data sorted by most recent date.
-  const data = new MarkdownArray<ProjectsMetadata>("projects")
+  const data = new MarkdownArray<ProjectsMetadata>(projectsFolderPath)
   .getArrayOfObjects().sort( (a, b) => {
     return (a.metadata.date < b.metadata.date) 
     ? 1
@@ -64,6 +62,8 @@ export const getStaticProps: GetStaticProps = async () : Promise<GetStaticPropsR
     }
   }
 }
+
+export const projectsFolderPath = "/data/projects"
 
 export type ProjectsMetadata = {
   title: string,

@@ -6,7 +6,7 @@ import utilStyles from '../../styles/utils.module.scss'
 import { MarkdownArray, MarkdownObject } from '../../lib/markdown/markdown';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { generatePaths } from '../../lib/paths/paths';
-import { ProjectsMetadata } from '../projects';
+import { projectsFolderPath, ProjectsMetadata } from '../projects';
 import Image from 'next/image';
 
 export default function Project({ 
@@ -80,7 +80,7 @@ export default function Project({
 
 export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult> => {
   // Return a list of possible value for id
-  const markdowns = new MarkdownArray("projects");
+  const markdowns = new MarkdownArray(projectsFolderPath);
   const paths = generatePaths(markdowns.getArrayOfId());
 
   return {
@@ -102,7 +102,7 @@ export const getStaticProps: GetStaticProps = async ({
 }>> => {
   // Fetch necessary data for the blog post using params.id
   
-  const data = new MarkdownArray<ProjectsMetadata>("projects")
+  const data = new MarkdownArray<ProjectsMetadata>(projectsFolderPath)
   .getById(id as MarkdownObject<ProjectsMetadata>["id"])
   .getProperties();
 

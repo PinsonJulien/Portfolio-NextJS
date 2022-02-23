@@ -3,6 +3,7 @@ import Layout, { siteTitle } from '../components/layout/layout';
 import { GetStaticProps, GetStaticPropsResult } from 'next';
 import { ProjectCard } from '../components/project-card/project-card';
 import { MarkdownArray, MarkdownObject } from '../lib/markdown/markdown';
+import { MDXProvider } from '@mdx-js/react';
 
 export default function Projects({ 
   data 
@@ -42,11 +43,9 @@ export default function Projects({
   )
 }
 
-export const getStaticProps: GetStaticProps = async () : Promise<GetStaticPropsResult<
-  { 
-    data: MarkdownObject<ProjectsMetadata>[]
-  }
->> => {
+export const getStaticProps: GetStaticProps = async () : Promise<GetStaticPropsResult<{ 
+  data: MarkdownObject<ProjectsMetadata>[]
+}>> => {
   // Get data sorted by most recent date.
   const data = new MarkdownArray<ProjectsMetadata>("projects")
   .getArrayOfObjects().sort( (a, b) => {

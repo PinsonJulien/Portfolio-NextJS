@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import { NavLink } from './navLink';
 import styles from './menu.module.scss';
 import { NextRouter, useRouter } from 'next/router';
+import ActiveLink from '../../../link/ActiveLink';
 
 export function Menu (
   {links, className} : 
@@ -10,20 +10,16 @@ export function Menu (
     className?: string;
   }) {
 
-  const router: NextRouter = useRouter();
-  const pathname: String = router.pathname;
-
   return (
     <ul 
       className={`
         text-base
-        lg:mx-auto
         flex
         flex-col
         gap-y-1
         lg:flex-row
         lg:gap-y-0
-        lg:gap-x-6
+        lg:gap-x-10
         ${className}
       `}
     > 
@@ -36,26 +32,23 @@ export function Menu (
                 lg:mt-0 
               `}
             >
-              <Link
+              <ActiveLink
                 href={data.path}
-                passHref
-              >
-                <a
-                  className={`
-                    block
-                    text-teal-200
-                    text-center
-                    hover:text-white
-                    ${
-                      pathname.includes(data.path)
-                      ? styles.active 
-                      : styles.animated
-                    }
-                  `}
-                >
-                  {data.name}   
-                </a>
-              </Link>
+                children = {data.name}
+                className= {`
+                  block
+                  text-center
+                  hover:text-secondary-900
+                `}
+                activeClassName= {`
+                  ${styles.active} 
+                  text-secondary-900`
+                }
+                inactiveClassName = {`
+                  ${styles.animated} 
+                  text-gray-500`
+                }
+              />
             </li>
           )
         )

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { Button } from '../../button/button';
 import { BurgerIcon } from '../../icons/burger/burger-icon';
@@ -17,12 +18,12 @@ export default function Navbar({
   // Liens:
   const links: NavLink[] = [
     {
-      path: "/posts",
-      name: "patatezzzzzzzzzzzzzzzzz"
+      path: "/projects",
+      name: "Projects"
     },
     {
-      path: "/patate",
-      name: "patate 2"
+      path: "/about",
+      name: "About"
     }
   ];
 
@@ -36,7 +37,9 @@ export default function Navbar({
         ${!open ? "h-auto" : "h-full"}
         lg:h-auto
         p-6
-        bg-teal-500
+        bg-primary-900
+        ${!open ? "bg-opacity-80 backdrop-blur" : ""}
+        h-min-screen
         flex
         flex-col
         lg:flex-row
@@ -50,7 +53,10 @@ export default function Navbar({
           items-center
         `}
       >
-        <div>
+        <div
+          className={`
+          `}
+        >
           logo
         </div>
         <div
@@ -64,14 +70,14 @@ export default function Navbar({
             onClick={() => setOpen(!open)}
             size={"MD"}
             className={`
-            border-teal-400 
-            hover:border-white
+            border-secondary-900
+            hover:bg-secondary-900
             `}
           >
             <BurgerIcon
               get={open}
               lineClassName={`
-                bg-teal-200 
+                bg-secondary-900
                 group-hover:bg-white
               `}
             />
@@ -88,6 +94,7 @@ export default function Navbar({
           lg:flex-row
           lg:items-center
           mx-auto
+          lg:ml-28
           p-2
           lg:p-0
         `}
@@ -102,28 +109,22 @@ export default function Navbar({
             mt-auto
             lg:mt-0
             mx-auto
+            lg:ml-auto
             lg:mx-0
           `}
         >
-          <a 
-            href="#" 
+          <Button
+            size={"XS"}
             className={`
-              inline-block 
-              text-sm 
-              px-4 
-              py-2 
-              leading-none 
-              border 
-              rounded 
-              text-white 
-              border-white 
-              hover:border-transparent 
-              hover:text-teal-500 
-              hover:bg-white 
+              border-secondary-900
+              text-secondary-900
+              hover:bg-secondary-900
             `}
           >
-            Download
-          </a>
+            <Link href={`/resume`}>
+                <a>CV / Resume</a>
+            </Link>
+          </Button>
         </div>
       </div>
     </nav>

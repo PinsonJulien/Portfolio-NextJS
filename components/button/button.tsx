@@ -17,6 +17,7 @@ export function Button(
         group
         border 
         rounded
+        hover:bg-opacity-10
         ${className}
         ${setSize(size)}
       `}

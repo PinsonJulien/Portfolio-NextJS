@@ -2,7 +2,14 @@
 title: 'Petit poneys'
 date: '2020-01-01'
 tags: ['Rose', 'Pois', 'Petit']
+thumbnail: '/public/images/projects/petit-poney/1.jpg'
+technologies: []
 ---
+
+<iframe
+  src="https://www.youtube.com/embed/UmX4kyB2wfg"
+>
+</iframe>
 
 # Salut les amis
 

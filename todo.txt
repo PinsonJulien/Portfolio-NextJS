@@ -1,0 +1,8 @@
+Cacher le main avec le open pour éviter scrollbar ?
+  -> Retirer le Z-index ?
+
+
+gérer la taille des images / vidéos dans les articles
+
+Comme caferati : Utiliser les méta technologies pour générer
+

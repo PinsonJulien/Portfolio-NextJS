@@ -4,11 +4,12 @@ import utilStyles from '../../styles/utils.module.scss'
 import Link from 'next/link'
 import React from 'react'
 import Navbar from './navbar/navbar'
+import Footer from './footer/footer'
 
 const name = 'Your Name'
 export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({ 
+export default function Layout({
   children,
   color, 
   home
@@ -21,9 +22,11 @@ export default function Layout({
     <div 
       className={`
         max-w-full
-        max-h-full
-        bg-slate-700
-        text-white
+        min-h-screen
+        bg-primary-900
+        text-gray-500
+        flex
+        flex-col
       `}
     >
       <Head>
@@ -49,18 +52,13 @@ export default function Layout({
           container
           px-5
           mx-auto
+          my-20
         `}
       >
         {children}
       </main>
 
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
+      <Footer />
     </div>
   )
 }

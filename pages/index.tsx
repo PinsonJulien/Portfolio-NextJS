@@ -10,30 +10,49 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-
-      <h1 className="text-3xl font-bold underline">lol</h1>
-
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+      
+      <section
+        className={`
+          mx-10
+          space-y-5
+        `}
+      >
+        <p
+          className={`
+            text-gray-700
+            text-md
+          `}
+        >
+          Welcome to my website, I'm
         </p>
-      </section>
 
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-            <li className={utilStyles.listItem}>
-              <Link href={`/posts/`}>
-                <a>{"title"}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Time dateString={"2020-01-01"} />
-              </small>
-            </li>
-        </ul>
+        <p
+          className={`
+          text-secondary-900
+            text-5xl
+          `}
+        >
+          Julien Pinson
+        </p>
+
+        <p
+          className={`
+          text-gray-700
+            text-3xl
+          `}
+        >
+          I work with web technologies and embedded systems.
+        </p>
+
+        <p
+          className={`
+          text-gray-900
+            text-md
+          `}
+        >
+          I'm a <span className='text-secondary-900'>Belgium</span> based <span className='text-secondary-900'>Business Computing degree student</span> (second year), first off <span className='text-secondary-900'>self-taught</span> on <span className='text-secondary-900'>web solutions</span> and integration with embedded systems.
+        </p>
+
       </section>
     </Layout>
   )

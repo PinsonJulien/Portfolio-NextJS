@@ -1,23 +1,33 @@
 import Head from 'next/head'
 import styles from './layout.module.scss'
-import utilStyles from '../../styles/utils.module.scss'
-import Link from 'next/link'
 import React from 'react'
 import Navbar from './navbar/navbar'
 import Footer from './footer/footer'
+import { NavLink } from './navbar/menu/navLink'
 
 const name = 'Your Name'
 export const siteTitle = 'Next.js Sample Website'
 
 export default function Layout({
-  children,
-  color, 
-  home
+  children
 }: {
   children: React.ReactNode;
-  color?;
-  home?: boolean;
 }) {
+
+  const [open, setOpen] = React.useState<boolean>(false);
+
+  // Liens:
+  const links: NavLink[] = [
+    {
+      path: "/projects",
+      name: "Projects"
+    },
+    {
+      path: "/about",
+      name: "About"
+    },
+  ];
+
   return (
     <div 
       className={`
@@ -45,7 +55,11 @@ export default function Layout({
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <Navbar />
+      <Navbar 
+        open = {open}
+        setOpen = {setOpen}
+        links = {links}
+      />
 
       <main
         className={`

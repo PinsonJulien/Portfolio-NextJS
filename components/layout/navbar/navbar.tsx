@@ -7,125 +7,121 @@ import { NavLink } from './menu/navLink';
 import styles from './navbar.module.scss';
 
 export default function Navbar({ 
-  children
+  open, setOpen, links
 }: {
-  children?: React.ReactNode;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  links : NavLink[];
 }) {
-
-  // Ouverture / fermeture du menu sur mobile.
-  const [open, setOpen] = React.useState<boolean>(false);
-
-  // Liens:
-  const links: NavLink[] = [
-    {
-      path: "/projects",
-      name: "Projects"
-    },
-    {
-      path: "/about",
-      name: "About"
-    }
-  ];
-
   return (
-    <nav 
+    <nav
       className={`
         w-full
-        ${!open ? "sticky" : "fixed" }
-        lg:sticky
-        top-0
-        ${!open ? "h-auto" : "h-full"}
-        lg:h-auto
+        grid
+        grid-cols-2
+        lg:grid-cols-4
+        grid-rows-10
         p-6
-        bg-primary-900
-        ${!open ? "bg-opacity-80 backdrop-blur" : ""}
-        h-min-screen
-        flex
-        flex-col
-        lg:flex-row
-        lg:items-center
         z-50
+        top-0
+        ${!open ? "h-auto" : "h-screen" }
+        sticky
+        bg-primary-900
       `}
     >
+      {/* Logo */}
       <div
         className={`
-          flex
-          items-center
+          order-1
+          col-span-1
+          row-span-1
+          mr-auto
         `}
       >
-        <div
-          className={`
-          `}
-        >
-          logo
-        </div>
-        <div
-          className={`
-            ml-auto
-            lg:ml-0
-            lg:hidden
-          `}
-        >
-          <Button
-            onClick={() => setOpen(!open)}
-            size={"MD"}
-            className={`
-            border-secondary-900
-            hover:bg-secondary-900
-            `}
-          >
-            <BurgerIcon
-              get={open}
-              lineClassName={`
-                bg-secondary-900
-                group-hover:bg-white
-              `}
-            />
-          </Button>
-        </div>
+        LOGO
       </div>
 
+      {/* Navigation */}
       <div
         className={`
-          ${!open ? "hidden" : "flex"}
+          ${!open 
+            ? `hidden` 
+            : `flex`
+          }
           lg:flex
-          grow
-          flex-col
-          lg:flex-row
-          lg:items-center
+          col-span-2
+          row-span-6
+          order-3
+          lg:order-2
           mx-auto
-          lg:ml-28
-          p-2
-          lg:p-0
         `}
       >
         <Menu
           links={links}
           className={`
+            
           `}
         />
-        <div
+      </div> 
+
+      {/* right button */}
+      <div 
+        className={`
+          ${!open 
+            ? `hidden` 
+            : `flex`
+          }
+          lg:flex
+          col-span-2
+          lg:col-span-1
+          order-4
+          lg:order-3
+          mx-auto
+          mt-auto
+          lg:mt-0
+          lg:mx-0
+          lg:ml-auto
+        `}
+      >
+        <Button
+          size={"XS"}
           className={`
-            mt-auto
-            lg:mt-0
-            mx-auto
-            lg:ml-auto
-            lg:mx-0
+            border-secondary-900
+            text-secondary-900
+            hover:bg-secondary-900
           `}
         >
-          <Button
-            size={"XS"}
-            className={`
-              border-secondary-900
-              text-secondary-900
-              hover:bg-secondary-900
+          <Link href={`/resume`}>
+              <a>CV / Resume</a>
+          </Link>
+        </Button>
+      </div>
+
+      {/* Burger */}
+      <div
+        className={`
+          col-span-1
+          order-2
+          lg:hidden
+          ml-auto
+        `}
+      >
+        <Button
+          onClick={() => setOpen(!open)}
+          size={"MD"}
+          className={`
+          border-secondary-900
+          hover:bg-secondary-900
+          `}
+        >
+          <BurgerIcon
+            get={open}
+            lineClassName={`
+              bg-secondary-900
+              group-hover:bg-white
             `}
-          >
-            <Link href={`/resume`}>
-                <a>CV / Resume</a>
-            </Link>
-          </Button>
-        </div>
+          />
+        </Button>
       </div>
     </nav>
   )

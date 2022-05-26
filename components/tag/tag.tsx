@@ -3,14 +3,16 @@ import styles from './tag.module.scss';
 export function Tag(
   { onClick, className, children, size } : 
   {
-    onClick?: () => void;
+    onClick?: () => any;
     className?: string;
     children?: any;
     size?: any
   }) {
   return (
-    <span
+    <div
+      onClick = {onClick}
       className={`
+        select-none
         text-xs
         font-mono
         font-semibold 
@@ -23,7 +25,7 @@ export function Tag(
       `}
     >
       {children}
-    </span>
+    </div>
   )
 }
 

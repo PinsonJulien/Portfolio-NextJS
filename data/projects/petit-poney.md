@@ -1,7 +1,7 @@
 ---
 title: 'Petit poneys'
 date: '2020-01-01'
-tags: ['Rose', 'Pois', 'Petit']
+tags: ['2', 'Pois', 'Petit']
 thumbnail: '/public/images/projects/petit-poney/1.jpg'
 technologies: []
 ---

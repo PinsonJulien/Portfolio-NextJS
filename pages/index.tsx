@@ -1,12 +1,10 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout/layout';
 import utilStyles from '../styles/utils.module.scss';
-import Link from 'next/link';
-import Time from '../components/time/time';
 
 export default function Home() {
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
       </Head>

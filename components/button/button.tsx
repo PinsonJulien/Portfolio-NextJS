@@ -4,7 +4,7 @@ import { ButtonSizes } from './buttonSizes';
 export function Button(
   { onClick, className, children, size } : 
   {
-    onClick?: () => void;
+    onClick?: () => any;
     className?: string;
     children?: any;
     size?: ButtonSizes

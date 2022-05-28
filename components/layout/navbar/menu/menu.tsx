@@ -13,13 +13,13 @@ export function Menu (
   return (
     <ul 
       className={`
-        text-base
+        text-xl
         flex
         flex-col
         gap-y-1
         lg:flex-row
         lg:gap-y-0
-        lg:gap-x-10
+        lg:gap-x-12
         ${className}
       `}
     > 

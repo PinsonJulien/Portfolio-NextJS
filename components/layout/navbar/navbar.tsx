@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { Button } from '../../button/button';
 import { BurgerIcon } from '../../icons/burger/burger-icon';
+import { Logo } from '../../icons/logo/logo';
 import { Menu } from './menu/menu';
 import { NavLink } from './menu/navLink';
 import styles from './navbar.module.scss';
@@ -24,7 +25,7 @@ export default function Navbar({
         p-6
         z-50
         top-0
-        ${!open ? "h-auto" : "h-screen" }
+        ${!open ? "h-auto bg-opacity-80" : "h-screen" }
         sticky
         bg-primary-900
       `}
@@ -36,9 +37,16 @@ export default function Navbar({
           col-span-1
           row-span-1
           mr-auto
+          ${!open ? "my-auto" : "" }
+          lg:my-auto
         `}
       >
-        LOGO
+        <Link href={`/`} passHref>
+            <a>
+              <Logo className='fill-gray-500 hover:fill-secondary-900 w-10 h-10 '/>
+            </a>
+        </Link>
+        
       </div>
 
       {/* Navigation */}
@@ -54,6 +62,7 @@ export default function Navbar({
           order-3
           lg:order-2
           mx-auto
+          lg:my-auto
         `}
       >
         <Menu
@@ -91,7 +100,7 @@ export default function Navbar({
             hover:bg-secondary-900
           `}
         >
-          <Link href={`/resume`}>
+          <Link href={`/resume`} passHref>
               <a>CV / Resume</a>
           </Link>
         </Button>

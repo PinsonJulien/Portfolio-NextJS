@@ -77,91 +77,129 @@ export default function Projects({
   return (
     <Layout>
       <Head>
-        <title>{siteTitle}</title>
+        <title>Projects - {siteTitle}</title>
       </Head>
 
-      <h1
+      <div
         className={`
-          text-gray-500
-            text-3xl
-        `}
-      >
-        Projects
-      </h1>
-
-      <section
-        className={`
+          w-full
           flex
-          gap-5
+          flex-col
+          gap-y-10
         `}
       >
-        {
-          (() => {
-            const actives = tags.some((e) => e.active);
-            return (
-              <Tag
-                onClick = {() => toggleTags(!actives)}
-                className={`
-                  text-gray-500
-                  bg-primary-500
-                `}
-              >
-                {
-                  (actives) ? "Disable all" : "Enable all" 
-                }
-              </Tag>
-            )
-          })()
-        }
-        
-        {
-          tags.map((tag, key) => 
-            <Tag
-              key={key}
-              onClick = {() => toggleTag(key)}
-              className={`
-                text-gray-500
-                bg-primary-500
-                ${tag.active 
-                  ? `
-                    outline 
-                    outline-2
-                  outline-secondary-900` 
-                  : ``
-                }
-              `}
-            >
-              { tag.tag }
-            </Tag>
-          )
-        }
-      </section>
+        <h1
+          className={`
+            text-gray-500
+            text-3xl
+            mx-auto
+          `}
+        >
+          Projects
+        </h1>
 
-      <section
-        className={`
-          grid
-          grid-cols-1
-          lg:grid-cols-3
-          w-9/12
-          mx-auto
-        `}
-      >
-        {
-          (projects.length === 0) 
-          ? 
-            "Oops we found nothing !"
-          :  
-            projects.map((val, key) => (
-              <ProjectCard
-                key={key}
-                url={`/projects/${val.id}`}
-                title={val.metadata.title}
-                imgPath={`/public/images/projects/${val.id}/${"thumbnail"}.jpg`}
-                tags={val.metadata.tags}
-              /> 
-            ))
-        }
-      </section>
+        <section
+          className={`
+            flex
+            flex-col
+            gap-6
+          `}
+        >
+          <div
+            className={`
+              flex
+              flex-wrap
+              gap-5
+              mx-auto
+              items-start
+              
+            `}
+          >
+            {
+              tags.map((tag, key) => 
+                <Tag
+                  key={key}
+                  onClick = {() => toggleTag(key)}
+                  className={`
+                    text-gray-500
+                    bg-primary-500
+                    ${tag.active 
+                      ? `
+                        outline 
+                        outline-2
+                      outline-secondary-900
+                      ` 
+                      : ``
+                    }
+                  `}
+                >
+                  { tag.tag }
+                </Tag>
+              )
+            }
+          </div>
+          <div
+            className={`
+              flex
+              flex-wrap
+              gap-5
+              mx-auto
+              items-start
+            `}
+          >
+            {
+              (() => {
+                const actives = tags.some((e) => e.active);
+                return (
+                  <Tag
+                    onClick = {() => toggleTags(!actives)}
+                    className={`
+                      text-gray-500
+                      bg-primary-500
+                      justify-self-center
+                    `}
+                  >
+                    {
+                      (actives) ? "Disable all" : "Enable all" 
+                    }
+                  </Tag>
+                )
+              })()
+            }
+          </div>
+        </section>
+
+        <section
+          className={`
+            grid
+            grid-cols-1
+            lg:grid-cols-2
+            lg:w-full
+            mx-auto
+            gap-5
+          `}
+        >
+          {
+            (projects.length === 0) 
+            ? 
+              "Oops we found nothing !"
+            :  
+              projects.map((val, key) => (
+                <ProjectCard
+                  key={key}
+                  url={`/projects/${val.id}`}
+                  title={val.metadata.title}
+                  description={val.metadata.description}
+                  thumbnail={`/public/images/projects/${val.id}/thumbnail.jpg`}
+                  tags={val.metadata.tags}
+                  github={val.metadata.github}
+                  externalLink = {val.metadata.externalLink}
+                /> 
+              ))
+          }
+        </section>
+      </div>
+      
     </Layout>
   )
 }
@@ -191,7 +229,10 @@ export const getStaticProps: GetStaticProps = async () : Promise<GetStaticPropsR
 export const projectsFolderPath = "/data/projects"
 
 export type ProjectsMetadata = {
-  title: string,
-  date: string,
-  tags: string[]
+  title: string;
+  description: string;
+  date: string;
+  tags: string[];
+  github: string;
+  externalLink: string;
 }

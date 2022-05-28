@@ -1,6 +1,20 @@
+Svgs: 
+https://www.svgrepo.com/vectors/external-link/filled/
+
+ou bootstrap
+
+ul pour les tags !!
+
+
 éviter mouvement quand la barre de scroll apparait ?
+
+blur navbar quand scroll 
+  bg-opacity ? 
+
 
 gérer la taille des images / vidéos dans les articles
 
 Comme caferati : Utiliser les méta technologies pour générer
 
+Page "experience"
+-> None yet, be the first (hire me button)

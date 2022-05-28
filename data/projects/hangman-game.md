@@ -1,9 +1,9 @@
 ---
-title: 'Petit poneys'
-description: 'Librairie pour afficher plein de petit poneys partout. Marche très bien je vous jure.'
+title: 'Hangman game'
+description: 'Game made for the first year exam'
 date: '2020-01-01'
-tags: ['2', 'Pois', 'Petit']
-thumbnail: '/public/images/projects/petit-poney/1.jpg'
+tags: ['Java', 'JavaFX', 'Sqllite', 'School', 'API', CSS]
+thumbnail: '/public/images/projects/hangman-game/thumbnail.png'
 github: "bite"
 externalLink: "bite"
 technologies: []

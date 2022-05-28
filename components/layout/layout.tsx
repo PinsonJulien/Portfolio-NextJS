@@ -35,6 +35,7 @@ export default function Layout({
         min-h-screen
         bg-primary-900
         text-gray-500
+        text-base
         flex
         flex-col
       `}

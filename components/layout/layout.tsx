@@ -23,6 +23,10 @@ export default function Layout({
       name: "Projects"
     },
     {
+      path: "/experiences",
+      name: "Experiences"
+    },
+    {
       path: "/about",
       name: "About"
     },
@@ -65,9 +69,9 @@ export default function Layout({
       <main
         className={`
           container
-          px-5
+          p-5
           mx-auto
-          my-20
+          grow
         `}
       >
         {children}

@@ -5,6 +5,7 @@ ou bootstrap
 
 ul pour les tags !!
 
+Utilise plus de container ?
 
 éviter mouvement quand la barre de scroll apparait ?
 
@@ -14,3 +15,18 @@ Comme caferati : Utiliser les méta technologies pour générer
 
 Page "experience"
 -> None yet, be the first (hire me button)
+
+
+Page about:
+
+Stuffs i'm looking forward to learn :
+rust, sockets.io, headless cms, c# & game development
+graphql, NoSQL, Hibernate, Java Spring
+
+
+Langues : 
+Avec use state, un state global utilisable par tout main ?
+
+faire des utilisation dans tous les textes de la page du state
+articles : Je ne sais pas... french description ?
+

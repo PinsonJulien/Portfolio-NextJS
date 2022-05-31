@@ -13,6 +13,7 @@ export function Button(
     <button 
       onClick={onClick}  
       className={`
+        select-none
         items-center
         group
         border 

@@ -127,7 +127,6 @@ export default function Navbar({
             get={open}
             lineClassName={`
               bg-secondary-900
-              group-hover:bg-white
             `}
           />
         </Button>

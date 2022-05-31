@@ -123,7 +123,7 @@ export default function Project({
               <span
                 className={`
                   block
-                  w-1/2
+                  w-1/4
                   mx-auto
                 `}
               >             

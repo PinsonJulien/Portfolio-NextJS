@@ -13,7 +13,6 @@ export function Menu (
   return (
     <ul 
       className={`
-        text-xl
         flex
         flex-col
         gap-y-1
@@ -36,6 +35,10 @@ export function Menu (
                 href={data.path}
                 children = {data.name}
                 className= {`
+                  select-none
+                  font-mono
+                  text-lg
+                  uppercase
                   block
                   text-center
                   hover:text-secondary-900

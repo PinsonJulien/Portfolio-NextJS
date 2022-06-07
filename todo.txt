@@ -13,16 +13,6 @@ gérer la taille des images / vidéos dans les articles
 
 Comme caferati : Utiliser les méta technologies pour générer
 
-Page "experience"
--> None yet, be the first (hire me button)
-
-
-Page about:
-
-Stuffs i'm looking forward to learn :
-rust, sockets.io, headless cms, c# & game development
-graphql, NoSQL, Hibernate, Java Spring
-
 
 Langues : 
 Avec use state, un state global utilisable par tout main ?
@@ -30,3 +20,4 @@ Avec use state, un state global utilisable par tout main ?
 faire des utilisation dans tous les textes de la page du state
 articles : Je ne sais pas... french description ?
 
+tag doit être un bouton ?

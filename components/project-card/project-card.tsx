@@ -27,7 +27,8 @@ export function ProjectCard(
         grid
         grid-cols-1
         auto-rows-fr
-        lg:grid-cols-2
+        sm:grid-cols-2
+        lg:grid-cols-3
         lg:auto-col-fr
         gap-y-5
         lg:gap-y-0
@@ -57,18 +58,17 @@ export function ProjectCard(
       <div
         className={`
           col-span-1
+          lg:col-span-2
           w-full
-          grid
-          grid-rows-7
-          grid-cols-1
+          flex
+          flex-col
+          px-5
+          py-3
         `}
       >
         {/* title */}
         <div
           className={`
-            row-span-1
-            mx-auto
-            my-auto
           `}
         >
           <h2
@@ -81,58 +81,14 @@ export function ProjectCard(
           </h2>
         </div>
 
-        {/* Description */}
-        <div
-          className={`
-            row-span-2
-            mx-auto
-            text-center
-            my-auto
-            bg-primary-700
-            text-gray-700
-            rounded
-            shadow-2xl
-            p-3
-          `}
-        >
-          {description}
-        </div>
-
-        {/* Learn more */}
-        <div
-          className={`
-            row-span-1
-            mx-auto
-            my-auto
-          `}
-        > 
-          <Button
-            size={"XS"}
-            className={`
-              border-secondary-900
-              text-secondary-900
-              hover:bg-secondary-900
-              text-2xl
-            `}
-          >
-            <Link href={url} passHref>
-                <a>
-                  <Plus className='w-5' />
-                </a>
-            </Link>
-          </Button>
-        </div>
-        
         {/* Tags */}
         <div
           className={`
-            row-span-2
+            py-6
             flex
             flex-wrap
             items-start
             gap-2
-            mx-auto
-            my-auto
             text-gray-700
           `}
         >
@@ -150,21 +106,49 @@ export function ProjectCard(
           }
         </div>
 
+
+        {/* Description */}
+        <div
+          className={`
+            mt-5
+            text-gray-700
+          `}
+        >
+          {description}
+        </div>
+        
+
         {/* Links */}
         <div
           className={`
             flex
             gap-5
-            mx-auto
-            my-auto
+            mt-auto
           `}
-        > 
+        >
+          <Button
+            size={"XS"}
+            className={`
+              border-secondary-900
+              text-secondary-900
+              hover:bg-secondary-900
+              text-2xl
+            `}
+          >
+            <Link href={url} passHref>
+                <a>
+                  Blog
+                </a>
+            </Link>
+          </Button>
+
           {
             (github) 
             ? 
               <a
                 href={github}
                 className={`
+                  my-auto
                   fill-gray-500
                   hover:fill-secondary-900
                 `}
@@ -180,6 +164,7 @@ export function ProjectCard(
               <a
               href={externalLink}
               className={`
+                my-auto
               fill-gray-500
               hover:fill-secondary-900
               `}

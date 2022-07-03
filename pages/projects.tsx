@@ -173,7 +173,6 @@ export default function Projects({
           className={`
             grid
             grid-cols-1
-            lg:grid-cols-2
             lg:w-full
             mx-auto
             gap-5

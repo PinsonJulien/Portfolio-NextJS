@@ -114,7 +114,9 @@ export function ProjectCard(
             text-gray-700
           `}
         >
-          {description}
+          <p>
+            {description}
+          </p>
         </div>
         
 
@@ -136,44 +138,46 @@ export function ProjectCard(
             `}
           >
             <Link href={url} passHref>
-                <a>
-                  Blog
-                </a>
+              <a>
+                Read more
+              </a>
             </Link>
           </Button>
+          <div className='flex gap-x-3 ml-auto lg:ml-5'>
+            {
+              (github) 
+              ? 
+                <a
+                  href={github}
+                  className={`
+                    my-auto
+                    fill-gray-500
+                    hover:fill-secondary-900
+                  `}
+                >
+                  <Github></Github>
+                </a>
+              : ""
+            }
 
-          {
-            (github) 
-            ? 
-              <a
-                href={github}
+            {
+              (externalLink)
+              ?
+                <a
+                href={externalLink}
                 className={`
                   my-auto
                   fill-gray-500
                   hover:fill-secondary-900
                 `}
               >
-                <Github></Github>
+                <ExternalLink></ExternalLink>
               </a>
-            : ""
-          }
+              : ""
+            }
 
-          {
-            (externalLink)
-            ?
-              <a
-              href={externalLink}
-              className={`
-                my-auto
-              fill-gray-500
-              hover:fill-secondary-900
-              `}
-            >
-              <ExternalLink></ExternalLink>
-            </a>
-            : ""
-          }
-
+          </div>
+          
           
         </div>
       </div>

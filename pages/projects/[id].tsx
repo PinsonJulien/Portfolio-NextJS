@@ -36,11 +36,33 @@ export default function Project({
         <div className={utilStyles.lightText}>
           <Time dateString={data.metadata.date} />
         </div>
+
+        {/* Image */}
+        <div
+          className={`
+            pt-5
+            w-full
+            lg:w-1/6
+            mx-auto
+            rounded
+          `}
+        >
+          <Image 
+            src={`/../public/images/projects/${data.id}/thumbnail.jpg`} 
+            layout="responsive"
+            width="100%"
+            height="100%"
+            className=''
+          />
+        </div>
+
+
         
         <ReactMarkdown
           rehypePlugins={[rehypeRaw]}
           children = {data.content}
           className={`
+            pt-5
           `}
           components= {{
             iframe: ({...props}) => (
@@ -123,7 +145,8 @@ export default function Project({
               <span
                 className={`
                   block
-                  w-1/4
+                  w-full
+                  lg:w-3/12
                   mx-auto
                 `}
               >             

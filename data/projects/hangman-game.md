@@ -2,10 +2,10 @@
 title: 'Hangman game'
 description: 'Game made for the first year exam'
 date: '2020-01-01'
-tags: ['Java', 'JavaFX', 'Sqllite', 'School', 'API', CSS]
+tags: ['Java', 'JavaFX', 'Sqlite', 'School', 'API', CSS]
 thumbnail: '/public/images/projects/hangman-game/thumbnail.png'
-github: "bite"
-externalLink: "bite"
+github: ""
+externalLink: ""
 technologies: []
 ---
 

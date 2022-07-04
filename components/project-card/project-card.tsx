@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../button/button';
+import { IconButton } from '../iconButton/iconButton';
 import { ExternalLink } from '../icons/externalLink/external-link';
 import { Github } from '../icons/github/github';
 import { Plus } from '../icons/plus/plus';
@@ -173,6 +174,16 @@ export function ProjectCard(
               >
                 <ExternalLink></ExternalLink>
               </a>
+              : ""
+            }
+
+            {
+              (externalLink)
+              ?
+                <IconButton
+                  href={externalLink}
+                  icon="ExternalLink"
+                />
               : ""
             }
 

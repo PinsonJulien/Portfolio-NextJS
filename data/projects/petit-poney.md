@@ -5,7 +5,7 @@ date: '2020-01-01'
 tags: ['2', 'Pois', 'Petit']
 thumbnail: '/public/images/projects/petit-poney/1.jpg'
 github: "bite"
-externalLink: "bite"
+externalLink: "https://www.youtube.com/embed/UmX4kyB2wfg"
 technologies: []
 ---
 

@@ -1,6 +1,6 @@
-import styles from './burger-icon.module.scss';
+import styles from './burger.module.scss';
 
-export function BurgerIcon(
+export function Burger(
   {get = false, className, lineClassName} : 
   {
     get?: boolean;

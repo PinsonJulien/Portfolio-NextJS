@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import { Button } from '../../button/button';
-import { BurgerIcon } from '../../icons/burger/burger-icon';
-import { Logo } from '../../icons/logo/logo';
+import { Burger } from '../../SVG/icons/burger/burger';
+import { Logo } from '../../SVG/icons/logo/logo';
 import { Menu } from './menu/menu';
 import { NavLink } from './menu/navLink';
 import styles from './navbar.module.scss';
@@ -123,7 +123,7 @@ export default function Navbar({
           hover:bg-secondary-900
           `}
         >
-          <BurgerIcon
+          <Burger
             get={open}
             lineClassName={`
               bg-secondary-900

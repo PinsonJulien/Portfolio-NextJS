@@ -1,10 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../button/button';
-import { IconButton } from '../iconButton/iconButton';
-import { ExternalLink } from '../icons/externalLink/external-link';
-import { Github } from '../icons/github/github';
-import { Plus } from '../icons/plus/plus';
+import { ExternalLink } from '../SVG/icons/externalLink/externalLink';
+import { Github } from '../SVG/icons/github/github';
+import SvgLink from '../SVG/SvgLink/SvgLink';
 import { Tag } from '../tag/tag';
 import styles from './project-card.module.scss';
 
@@ -20,6 +19,13 @@ export function ProjectCard(
     externalLink: string;
     className?: string;
   }) {
+
+  const svgLinkClassName = `
+    my-auto 
+    fill-gray-500 
+    hover:fill-secondary-900
+  `; 
+
   return (
     <article
       className={`
@@ -146,50 +152,32 @@ export function ProjectCard(
           </Button>
           <div className='flex gap-x-3 ml-auto lg:ml-5'>
             {
-              (github) 
-              ? 
-                <a
+              (github)
+              ?
+                <SvgLink
                   href={github}
-                  className={`
-                    my-auto
-                    fill-gray-500
-                    hover:fill-secondary-900
-                  `}
+                  className={svgLinkClassName}
+                  newTab
                 >
-                  <Github></Github>
-                </a>
-              : ""
+                  <Github/>
+                </SvgLink>
+              : null
             }
 
             {
               (externalLink)
               ?
-                <a
-                href={externalLink}
-                className={`
-                  my-auto
-                  fill-gray-500
-                  hover:fill-secondary-900
-                `}
-              >
-                <ExternalLink></ExternalLink>
-              </a>
-              : ""
-            }
-
-            {
-              (externalLink)
-              ?
-                <IconButton
+                <SvgLink
                   href={externalLink}
-                  icon="ExternalLink"
-                />
-              : ""
+                  className={svgLinkClassName}
+                  newTab
+                >
+                  <ExternalLink />
+                </SvgLink>
+              : null
             }
 
           </div>
-          
-          
         </div>
       </div>
     </article>

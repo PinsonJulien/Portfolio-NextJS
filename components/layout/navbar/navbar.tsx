@@ -1,7 +1,5 @@
-import classNames from 'classnames';
 import Link from 'next/link';
 import React from 'react';
-import { Button } from '../../button/button';
 import { Burger } from '../../SVG/icons/burger/burger';
 import { Logo } from '../../SVG/icons/logo/logo';
 import { Moon } from '../../SVG/icons/moon/moon';
@@ -48,7 +46,7 @@ export default function Navbar({
       >
         <Link href={`/`} passHref>
             <a>
-              <Logo className='fill-gray-500 hover:fill-secondary-900 w-10 h-10 '/>
+              <Logo className='fill-gray-500 hover:fill-secondary-900'/>
             </a>
         </Link>
         
@@ -84,7 +82,6 @@ export default function Navbar({
           flex
           ml-auto
           mb-auto
-          lg:my-auto
           col-span-1
           order-2
           gap-5
@@ -95,7 +92,7 @@ export default function Navbar({
           onClick={switchLightMode}
         />
 
-        <BurgerButton 
+        <BurgerButton
           value={open}
           onClick={() => setOpen(!open)}
           className={`
@@ -146,6 +143,16 @@ const BurgerButton = (
     className?: string;
   }
 ) => {
+  const transition = `
+    transition-opacity
+    duration-700
+    ${
+      (props.value)
+      ? 'opacity-0'
+      : 'opacity-1'
+    }
+  `;
+
   return (
     <button
       onClick={props.onClick}
@@ -155,9 +162,15 @@ const BurgerButton = (
       `}
     >
       <Burger
-        get={props.value}
-        lineClassName={`
-          bg-secondary-900
+        className={`
+          stroke-gray-500 
+          hover:stroke-secondary-900
+        `}
+        firstBarClassName={`
+          ${transition}
+        `}
+        thirdBarClassName={`
+          ${transition}
         `}
       />
     </button>

@@ -1,13 +1,16 @@
 import React from 'react';
 
 export default function Footer({ 
-  children
+  children,
+  className
 }: {
   children?: React.ReactNode;
+  className?: string;
 }) {
   return (
     <footer 
       className={`
+        ${className}
         w-full
         mt-auto
         p-6

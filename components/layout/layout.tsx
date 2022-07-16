@@ -73,6 +73,7 @@ export default function Layout(
 
       <main
         className={`
+          ${open ? 'hidden' : ''}
           container
           p-5
           mx-auto
@@ -82,7 +83,11 @@ export default function Layout(
         {props.children}
       </main>
 
-      <Footer />
+      <Footer 
+        className={`
+          ${open ? 'hidden' : ''}
+        `}
+      />
     </div>
   )
 }

@@ -1,19 +1,17 @@
 import Head from 'next/head'
 import styles from './layout.module.scss'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from './navbar/navbar'
 import Footer from './footer/footer'
 import { NavLink } from './navbar/menu/navLink'
+import { StateProps } from '../../pages/_app'
 
 const name = 'Your Name'
 export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({
-  children
-}: {
-  children: React.ReactNode;
-}) {
-
+export default function Layout(
+  props: StateProps & {children: React.ReactNode }
+) {
   const [open, setOpen] = React.useState<boolean>(false);
 
   // Liens:
@@ -30,11 +28,16 @@ export default function Layout({
       path: "/about",
       name: "About"
     },
+    {
+      path: "/cv",
+      name: "CV"
+    }
   ];
 
   return (
     <div 
       className={`
+        ${(!props.lightMode) ? "dark" : null}
         max-w-full
         min-h-screen
         bg-primary-900
@@ -64,6 +67,8 @@ export default function Layout({
         open = {open}
         setOpen = {setOpen}
         links = {links}
+        lightMode = {props.lightMode}
+        switchLightMode = {props.switchLightMode}
       />
 
       <main
@@ -74,7 +79,7 @@ export default function Layout({
           grow
         `}
       >
-        {children}
+        {props.children}
       </main>
 
       <Footer />

@@ -1,17 +1,22 @@
+import classNames from 'classnames';
 import Link from 'next/link';
 import React from 'react';
 import { Button } from '../../button/button';
 import { Burger } from '../../SVG/icons/burger/burger';
 import { Logo } from '../../SVG/icons/logo/logo';
+import { Moon } from '../../SVG/icons/moon/moon';
+import { Sun } from '../../SVG/icons/sun/sun';
 import { Menu } from './menu/menu';
 import { NavLink } from './menu/navLink';
 import styles from './navbar.module.scss';
 
 export default function Navbar({ 
-  open, setOpen, links
+  open, setOpen, lightMode, switchLightMode, links
 }: {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  lightMode: boolean;
+  switchLightMode: any;
   links : NavLink[];
 }) {
   return (
@@ -71,66 +76,90 @@ export default function Navbar({
             
           `}
         />
-      </div> 
-
-      {/* right button */}
-      <div 
-        className={`
-          ${!open 
-            ? `hidden` 
-            : `flex`
-          }
-          lg:flex
-          col-span-2
-          lg:col-span-1
-          order-4
-          lg:order-3
-          mx-auto
-          mt-auto
-          lg:mt-0
-          lg:mx-0
-          lg:ml-auto
-        `}
-      >
-        <Button
-          size={"XS"}
-          className={`
-            border-secondary-900
-            text-secondary-900
-            hover:bg-secondary-900
-          `}
-        >
-          <Link href={`/resume`} passHref>
-              <a>CV / Resume</a>
-          </Link>
-        </Button>
       </div>
-
-      {/* Burger */}
+      
+      {/* right side */}
       <div
         className={`
+          flex
+          ml-auto
+          mb-auto
+          lg:my-auto
           col-span-1
           order-2
-          lg:hidden
-          ml-auto
+          gap-5
         `}
       >
-        <Button
+        <LightSwitch 
+          value={lightMode}
+          onClick={switchLightMode}
+        />
+
+        <BurgerButton 
+          value={open}
           onClick={() => setOpen(!open)}
-          size={"MD"}
           className={`
-          border-secondary-900
-          hover:bg-secondary-900
+            lg:hidden
           `}
-        >
-          <Burger
-            get={open}
-            lineClassName={`
-              bg-secondary-900
-            `}
-          />
-        </Button>
+        />
       </div>
     </nav>
   )
+}
+
+const LightSwitch = (
+  props : {
+    value: boolean;
+    onClick: () => any;
+  }
+) => {
+  return (
+    <button
+      onClick={props.onClick}
+      className='my-auto'
+    >
+      {
+        (!props.value) 
+        ? (
+          <Sun 
+            className={`
+            stroke-yellow-500
+            `}
+          />
+        )
+        : (
+          <Moon 
+            className={`
+            stroke-yellow-500
+            `}
+          />
+        )
+      }
+    </button>
+  )
+}
+
+const BurgerButton = (
+  props : {
+    value: boolean;
+    onClick: () => any;
+    className?: string;
+  }
+) => {
+  return (
+    <button
+      onClick={props.onClick}
+      className={`
+        ${props.className}
+        my-auto
+      `}
+    >
+      <Burger
+        get={props.value}
+        lineClassName={`
+          bg-secondary-900
+        `}
+      />
+    </button>
+  );
 }

@@ -10,12 +10,11 @@ import { projectsFolderPath, ProjectsMetadata } from '../projects';
 import Image from 'next/image';
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
+import { StateProps } from '../_app';
 
-export default function Project({ 
-  data
-} : {
-  data: MarkdownObject<ProjectsMetadata>
-}): JSX.Element {
+export default function Project(
+  props: StateProps & { data: MarkdownObject<ProjectsMetadata>}
+): JSX.Element {
 
   const headerClasses: string = `
     text-secondary-900
@@ -26,15 +25,15 @@ export default function Project({
   `;
 
   return (
-    <Layout>
+    <Layout {...props }>
       <Head>
-        <title>{data.metadata.title}</title>
+        <title>{props.data.metadata.title}</title>
       </Head>
 
       <article>
-        <h1 className={utilStyles.headingXl}>{data.metadata.title}</h1>
+        <h1 className={utilStyles.headingXl}>{props.data.metadata.title}</h1>
         <div className={utilStyles.lightText}>
-          <Time dateString={data.metadata.date} />
+          <Time dateString={props.data.metadata.date} />
         </div>
 
         {/* Image */}
@@ -48,7 +47,7 @@ export default function Project({
           `}
         >
           <Image 
-            src={`/../public/images/projects/${data.id}/thumbnail.jpg`} 
+            src={`/../public/images/projects/${props.data.id}/thumbnail.jpg`} 
             layout="responsive"
             width="100%"
             height="100%"
@@ -60,7 +59,7 @@ export default function Project({
         
         <ReactMarkdown
           rehypePlugins={[rehypeRaw]}
-          children = {data.content}
+          children = {props.data.content}
           className={`
             pt-5
           `}

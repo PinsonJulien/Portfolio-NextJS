@@ -5,7 +5,7 @@ import { Tag } from '../components/tag/tag';
 import { calculateAgeToday } from '../lib/date/age';
 import utilStyles from '../styles/utils.module.scss';
 
-export default function About() {
+export default function About(props) {
   const age = calculateAgeToday(new Date('1995-08-24'));
   const favoriteTech: string[] = [
     "NextJS",
@@ -32,7 +32,7 @@ export default function About() {
   ];
 
   return (
-    <Layout>
+    <Layout {...props}>
       <Head>
         <title>About - {siteTitle}</title>
       </Head>

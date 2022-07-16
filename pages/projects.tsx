@@ -5,16 +5,15 @@ import { ProjectCard } from '../components/project-card/project-card';
 import { MarkdownArray, MarkdownObject } from '../lib/markdown/markdown';
 import { Tag } from '../components/tag/tag';
 import React, { useEffect } from 'react';
+import { StateProps } from './_app';
 
-export default function Projects({ 
-  data 
-} : { 
-  data : MarkdownObject<ProjectsMetadata>[]
-}): JSX.Element {
+export default function Projects(
+  props: StateProps & { data: MarkdownObject<ProjectsMetadata>[] }
+) : JSX.Element {
   const [tags, setTags] = React.useState<{tag: string; active: boolean}[]>([]);
-  const [projects, setProjects] = React.useState<MarkdownObject<ProjectsMetadata>[]>([...data]);
+  const [projects, setProjects] = React.useState<MarkdownObject<ProjectsMetadata>[]>([...props.data]);
   
-  data.forEach(el => {
+  props.data.forEach(el => {
     el.metadata.tags?.forEach(tag => {
       if (!tags.some((e) => e.tag === tag)) {
         const obj = { tag, active: true };
@@ -55,7 +54,7 @@ export default function Projects({
 
     const validProjects = [];
 
-    data.forEach((e) => {
+    props.data.forEach((e) => {
       const tags = e.metadata.tags;
 
       const hasTag = activeTags.some((tag) => {
@@ -70,12 +69,12 @@ export default function Projects({
     setProjects(validProjects);
   }, [
     tags,
-    data,
+    props.data,
     setProjects
   ]);
 
   return (
-    <Layout>
+    <Layout {...props}>
       <Head>
         <title>Projects - {siteTitle}</title>
       </Head>

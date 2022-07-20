@@ -28,9 +28,9 @@ export default function Navbar({
         p-6
         z-50
         top-0
-        ${!open ? "h-auto bg-opacity-80" : "h-screen" }
+        ${!open ? "h-auto" : "h-screen" }
         sticky
-        bg-primary-900
+        bg-blue-900
       `}
     >
       {/* Logo */}

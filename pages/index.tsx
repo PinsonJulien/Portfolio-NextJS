@@ -4,9 +4,7 @@ import utilStyles from '../styles/utils.module.scss';
 
 export default function Home(props) {
   return (
-    <Layout
-      {...props}
-    >
+    <Layout {...props}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -19,7 +17,7 @@ export default function Home(props) {
       >
         <p
           className={`
-            text-gray-700
+            text-neutral-600
             text-md
           `}
         >
@@ -28,7 +26,7 @@ export default function Home(props) {
 
         <p
           className={`
-          text-secondary-900
+          text-cyan-700
             text-5xl
           `}
         >
@@ -37,7 +35,7 @@ export default function Home(props) {
 
         <p
           className={`
-          text-gray-700
+          text-neutral-600
             text-3xl
           `}
         >
@@ -46,11 +44,11 @@ export default function Home(props) {
 
         <p
           className={`
-          text-gray-900
+          text-neutral-600
             text-md
           `}
         >
-          I'm a <span className='text-secondary-900'>Belgium</span> based <span className='text-secondary-900'>Business Computing degree student</span> (second year), first off <span className='text-secondary-900'>self-taught</span> on <span className='text-secondary-900'>web solutions</span> and integration with embedded systems.
+          I'm a <span className='text-cyan-600'>Belgium</span> based <span className='text-cyan-600'>Business Computing degree student</span> (second year), first off <span className='text-cyan-600'>self-taught</span> on <span className='text-cyan-600'>web solutions</span> and integration with embedded systems.
         </p>
 
       </section>

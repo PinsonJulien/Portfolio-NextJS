@@ -21,21 +21,21 @@ export function Burger (props : BurgerProps) {
           className={props.firstBarClassName}
           strokeLinecap="round" 
           strokeLinejoin="round" 
-          d="M4 6h16M4"
+          d="M4 6h16M4 0"
         />
 
         <path
           className={props.secondBarClassName}
           strokeLinecap="round" 
           strokeLinejoin="round" 
-          d="M4 12h16M4"
+          d="M4 12h16M4 0"
         />
 
         <path
           className={props.thirdBarClassName}
           strokeLinecap="round" 
           strokeLinejoin="round" 
-          d="M4 18h16"
+          d="M4 18h16 0"
         />
     </svg>
   )

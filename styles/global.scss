@@ -4,6 +4,11 @@
 @import "tailwindcss/utilities";
 
 
+html {
+  /* fix the content moving with scrollbar. */
+  overflow-y: scroll;
+}
+
 html,
 body {
   padding: 0;

@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { Button } from '../components/button/button';
 import Layout, { siteTitle } from '../components/layout/layout';
 import utilStyles from '../styles/utils.module.scss';
 import { StateProps } from './_app';
@@ -21,13 +20,12 @@ export default function Experiences(props: StateProps) {
           container
           flex
           flex-col
-          bg-blue-500
-          dark:bg-red-500
+          text-neutral-900
+          dark:text-neutral-100
         `}
       >
         <h1
           className={`
-            text-gray-500
             text-2xl
             mx-auto
           `}
@@ -48,7 +46,8 @@ export default function Experiences(props: StateProps) {
         >
           <div
             className={`
-              bg-secondary-900
+              bg-teal-600
+              dark:bg-teal-500
               bg-opacity-50
               overflow-hidden
               rounded-xl
@@ -67,20 +66,25 @@ export default function Experiences(props: StateProps) {
           <div
             className={`
               mx-auto
+              flex
+              gap-x-2
+              text-lg
             `}
           >
-            <Button
-              size={"MD"}
-              className={`
-                border-secondary-900
-                text-secondary-900
-                hover:bg-secondary-900
-              `}
-            >
-              <Link href={`/contact`} passHref>
-                  <a>Be the first</a>
-              </Link>
-            </Button>
+            <p>
+              Want to be the first ?
+            </p>
+            <Link href={`/contact`} passHref>
+              <a
+                className={`
+                  text-orange-600
+                  dark:text-orange-500
+                  hover:underline
+                `}
+              >
+                Contact me !
+              </a>
+            </Link>
           </div>
 
         </div>

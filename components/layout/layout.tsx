@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from './layout.module.scss'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Navbar from './navbar/navbar'
 import Footer from './footer/footer'
 import { NavLink } from './navbar/menu/navLink'
@@ -40,8 +40,6 @@ export default function Layout(
         ${(!props.lightMode) ? "dark" : null}
         max-w-full
         min-h-screen
-        bg-primary-900
-        text-gray-500
         text-base
         flex
         flex-col
@@ -74,17 +72,24 @@ export default function Layout(
       <main
         className={`
           ${open ? 'hidden' : ''}
-          container
-          p-5
-          mx-auto
           grow
+          bg-neutral-100
+          dark:bg-neutral-800
+          text-neutral-800
+          dark:text-neutral-200
+          transition-colors
+          duration-1000
         `}
       >
-        {props.children}
+        <div className='p-5 mx-auto container'>
+          {props.children}
+        </div>
       </main>
 
       <Footer 
         className={`
+        bg-blue-900
+        text-neutral-100
           ${open ? 'hidden' : ''}
         `}
       />
